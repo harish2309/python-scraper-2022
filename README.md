@@ -1,8 +1,6 @@
 # python-scraper-2022
+Good
 
-
-
-https://www.geeksforgeeks.org/web-scraping-using-lxml-and-xpath-in-python/
 
 In this article, we will discuss the lxml python library to scrape data from a webpage, which is built on top of the libxml2 XML parsing library written in C. When compared to other python web scraping libraries like BeautifulSoup and Selenium, the lxml package gives an advantage in terms of performance. Reading and writing large XML files takes an indiscernible amount of time, making data processing easier & much faster.
 
@@ -10,11 +8,8 @@ We will be using the lxml library for Web Scraping and the requests library for 
 
 Getting data from an element on the webpage using lxml requires the usage of Xpaths.
 
-Using XPath
-XPath works very much like a traditional file system
+![image](https://user-images.githubusercontent.com/36474847/175803768-0af4daaa-0cee-4903-b719-edabae3c6545.png)
 
-
-Diagram of a File System
 
 To access file 1,
 
@@ -25,37 +20,38 @@ C:/Documents/User1/File2
 Now consider a simple web page,
 
 
-<html>
-   <head>
-       <title>My page</title>
-   </head>
-   <body>
-       <h2>Welcome to my page<h2>
-      <a href="www.example.com">page</a>
-         
+`<html>
+<head>
+	<title>My page</title>
+</head>
+<body>
+	<h2>Welcome to my page<h2>
+	<a href="www.example.com">page</a>
+		
 <p>This is the first paragraph</p>
-  
-       <h2>Hello World</h2>
-   </body>
-</html>
-This can be represented as an XML Tree as follows,
+
+	<h2>Hello World</h2>
+</body>
+</html>`
+
+![image](https://user-images.githubusercontent.com/36474847/175803875-315c1905-77c8-42f7-9e75-ffca8919d07d.png)
 
 
-XML Tree of the Webpage
+`XPath : html/body/p/text()
+Result : This is the first paragraph`
 
-For getting the text inside the <p> tag,
 
-XPath : html/body/p/text()
-Result : This is the first paragraph
 For getting a value inside the <href> attribute in the anchor or <a> tag,
 
-XPath : html/body/a/@href
-Result: www.example.com
+`XPath : html/body/a/@href
+Result: www.example.com`
 For getting the value inside the second <h2> tag,
 
-XPath : html/body/h2[2]/text()
-Result: Hello World
-To find the XPath for a particular element on a page:
+`XPath : html/body/h2[2]/text()
+Result: Hello World`
+  
+  
+ To find the XPath for a particular element on a page:
 Right-click the element in the page and click on Inspect.
 Right click on the element in the Elements Tab.
 Click on copy XPath.
@@ -67,8 +63,9 @@ We create the correct XPath query and use the lxml xpath function to get the req
 Example 1:
 
 Below is a program based on the above approach which uses a particular URL.
-
-# Import required modules
+  
+  
+`# Import required modules
 from lxml import html
 import requests
   
@@ -83,16 +80,14 @@ tree = html.fromstring(page.content)
   
 # Get element using XPath
 buyers = tree.xpath('//div[@title="buyer-name"]/text()')
-print(buyers)
-Output:
+print(buyers)`
+  
+  
+  ![image](https://user-images.githubusercontent.com/36474847/175803910-21037196-5392-48ef-a9fd-54e21e403b31.png)
 
-
-
-Example 2:
-
-Another example for an E-commerce website, URL.
-
-# Import required modules
+  
+  
+`# Import required modules
 from lxml import html
 import requests
   
@@ -106,3 +101,5 @@ tree = html.fromstring(page.content)
 prices = tree.xpath(
     '//div[@class="col-sm-4 col-lg-4 col-md-4"]/div/div[1]/h4[1]/text()')
 print(prices)
+  `
+  
